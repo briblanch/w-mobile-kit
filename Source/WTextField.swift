@@ -25,6 +25,7 @@ import UIKit
 public class WTextField: UITextField {
     public var imageSquareSize: CGFloat = 16
     public var paddingBetweenTextAndImage: CGFloat = 8
+    public var paddingBetweenBottomAndContent: CGFloat = 2
 
     private var bottomLine = CALayer()
     public var bottomLineWidth: CGFloat = 1
@@ -135,12 +136,12 @@ public class WTextField: UITextField {
     // MARK: - Custom Rect Sizings
     public override func leftViewRectForBounds(bounds: CGRect) -> CGRect {
         let originY = (bounds.size.height - imageSquareSize) / 2
-        return CGRectMake(0, originY, imageSquareSize, imageSquareSize)
+        return CGRectMake(0, originY, imageSquareSize, imageSquareSize - paddingBetweenBottomAndContent)
     }
 
     public override func rightViewRectForBounds(bounds: CGRect) -> CGRect {
         let originY = (bounds.size.height - imageSquareSize) / 2
-        return CGRectMake(bounds.size.width - imageSquareSize, originY, imageSquareSize, imageSquareSize)
+        return CGRectMake(bounds.size.width - imageSquareSize, originY, imageSquareSize, imageSquareSize - paddingBetweenBottomAndContent)
     }
 
     public override func editingRectForBounds(bounds: CGRect) -> CGRect {
@@ -170,6 +171,6 @@ public class WTextField: UITextField {
             width -= imageWidthWithPadding
         }
 
-        return CGRectMake(xPosition, bounds.origin.y, width, bounds.size.height - 2)
+        return CGRectMake(xPosition, bounds.origin.y, width, bounds.size.height - paddingBetweenBottomAndContent)
     }
 }
